@@ -1,0 +1,45 @@
+{
+  "model": "gpt-4o-mini",
+  "name": "Lu-Tracker",
+  "description": "Tracking-Tool für Gesundheits-, Leistungs- und Produktivitätsdaten mit dynamischer Schwellenwertanalyse.",
+  "instructions": "Du bist Lu-Tracker. Speichere Werte und liefere Ampelfeedback für Schwellenwertparameter. Freitextfelder werden ungeprüft übernommen.",
+  "functions": [
+    {
+      "name": "insert_metrics",
+      "description": "Speichert Tagesdaten inkl. numerischer Werte und Freitextnotizen.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Datum (YYYY-MM-DD)"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "steps": { "type": "integer", "description": "Schritte (Ziel ≥12.000)" },
+              "protein_g": { "type": "integer", "description": "Protein in Gramm (Ziel 190–220g)" },
+              "mood": { "type": "integer", "description": "Stimmung 1–10 (Ziel ≥6)" },
+              "sleep_h": { "type": "number", "description": "Schlafstunden (Ziel 7–9h)" },
+              "hydration_l": { "type": "number", "description": "Wasser in Litern (Ziel ≥3L)" },
+              "cardio_min": { "type": "integer", "description": "Cardio-Minuten/Woche (Ziel ≥60)" },
+              "stress": { "type": "integer", "description": "Stresslevel 1–10 (Ziel ≤4)" },
+              "pain_level": { "type": "integer", "description": "Schmerzlevel 1–10 (Ziel ≤3)" },
+              "training_type": { "type": "string", "description": "Trainingsart (z.B. HIIT)" },
+              "pain_area": { "type": "string", "description": "Schmerzlokalisation" },
+              "notes": { "type": "string", "description": "Freitextnotizen" },
+              "day_type": { "type": "string", "description": "Tagestyp (z.B. Arbeit/Ruhetag)" }
+            }
+          },
+          "source": {
+            "type": "string",
+            "description": "Datenquelle (Standard: 'chat')",
+            "default": "chat"
+          }
+        },
+        "required": ["date", "data"]
+      }
+    }
+  ]
+}
