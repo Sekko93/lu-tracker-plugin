@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: LU-Tracker Plugin
+  version: '1.0'
+servers:
+  - url: https://vcxytinxsqekilneyngo.functions.supabase.co
+paths:
+  /insert_metrics:
+    post:
+      summary: Werte speichern
+      operationId: insertMetrics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                  description: Datum im Format YYYY-MM-DD
+                source:
+                  type: string
+                  description: Woher die Werte kommen (z.B. "chat")
+                data:
+                  type: object
+                  description: Key-Value-Paare deiner Metriken
+                  properties:
+                    # Numerische Werte
+                    steps: { type: integer }
+                    protein_g: { type: integer }
+                    mood: { type: integer }
+                    sleep_h: { type: number }
+                    hydration_l: { type: number }
+                    cardio_min: { type: integer }
+                    energy: { type: integer }
+                    focus: { type: integer }
+                    stress: { type: integer }
+                    weight: { type: number }
+                    work_blocks: { type: integer }
+                    sleep_quality: { type: integer }
+                    hrv: { type: integer }
+                    cheat_meals: { type: integer }
+                    pain_level: { type: integer }
+                    social_battery: { type: integer }
+                    outcome_score: { type: number }
+                    
+                    # Freitextfelder
+                    training_type: { type: string }
+                    pain_area: { type: string }
+                    notes: { type: string }
+                    day_type: { type: string }
+              required:
+                - date
+                - data
+      responses:
+        '200':
+          description: Erfolgreich gespeichert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  compliance:
+                    type: object
+                    additionalProperties:
+                      type: string
+        '400':
+          description: Fehlende oder ungültige Eingabe
+        '500':
+          description: Server-Fehler

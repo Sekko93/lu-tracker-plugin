@@ -1,0 +1,19 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "LU Tracker",
+  "name_for_model": "lu_tracker",
+  "description_for_human": "Speichert und verwaltet deine täglichen Gesundheits- und Leistungsdaten.",
+  "description_for_model": "Plugin zum Speichern, Abrufen, Aktualisieren und Löschen deiner Tagesmetriken in Supabase.",
+  "auth": {
+    "type": "service_http",
+    "authorization_type": "bearer"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "openapi.yaml",
+    "is_user_authenticated": true
+  },
+  "logo_url": "logo.png",
+  "contact_email": "support@lu-tracker.local",
+  "legal_info_url": "https://lu-tracker.local/legal"
+}
