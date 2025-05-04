@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Lu‑Tracker API
+  version: "1.0"
+servers:
+  - url: https://vcxytinxsqekilneyngo.functions.supabase.co
+paths:
+  /insert_metrics:
+    post:
+      operationId: insertMetrics
+      summary: Speichert Tageswerte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                  example: "2025-05-04"
+                steps:
+                  type: integer
+                  example: 12000
+                cardio_min:
+                  type: integer
+                  example: 60
+                training_type:
+                  type: string
+                  example: "Push"
+                protein_g:
+                  type: integer
+                  example: 200
+                cheat_meal:
+                  type: boolean
+                  example: false
+                hydration_l:
+                  type: number
+                  example: 3.2
+                mood:
+                  type: integer
+                  example: 7
+                energy:
+                  type: integer
+                  example: 6
+                stress:
+                  type: integer
+                  example: 4
+                focus:
+                  type: integer
+                  example: 8
+                social_energy:
+                  type: integer
+                  example: 3
+                highlight:
+                  type: string
+                  example: "Akademisch"
+                sleep_h:
+                  type: number
+                  example: 7.5
+                sleep_quality:
+                  type: integer
+                  example: 4
+                hrv_ms:
+                  type: integer
+                  example: 56
+                rest_day:
+                  type: boolean
+                  example: false
+                weight:
+                  type: number
+                  example: 72.5
+                pain_level:
+                  type: integer
+                  example: 2
+                pain_area:
+                  type: string
+                  example: "Knie"
+                work_blocks:
+                  type: integer
+                  example: 6
+                outcome_score:
+                  type: number
+                  example: 1.5
+                planning_done:
+                  type: boolean
+                  example: true
+                notes:
+                  type: string
+                  example: "Gute Woche, weiter so!"
+                day_type:
+                  type: string
+                  example: "Alltag"
+                calories_kcal:
+                  type: integer
+                  example: 2300
+              required:
+                - date
+      responses:
+        "200":
+          description: Erfolgreich gespeichert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  id:
+                    type: string
+                    format: uuid
+
+  /update_metrics:
+    patch:
+      operationId: updateMetrics
+      # … hier unverändert weitermachen …
+
+  /delete_metrics:
+    delete:
+      operationId: deleteMetrics
+      # …  
+
+  /get_metrics:
+    get:
+      operationId: getMetrics
+      # …
+
+  /update_threshold:
+    post:
+      operationId: updateThreshold
+      # …
+
+  /get_thresholds:
+    get:
+      operationId: getThresholds
+      # …
+
+components:
+  schemas: {}
+  securitySchemes:
+    SupabaseAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - SupabaseAuth: []
